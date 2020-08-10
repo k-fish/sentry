@@ -1641,6 +1641,25 @@ function routes() {
               component={errorHandler(LazyLoad)}
             />
           </Route>
+
+          <Route
+            path="/organizations/:orgId/experience/"
+            componentPromise={() =>
+              import(
+                /* webpackChunkName: "PerformanceContainer" */ 'app/views/experience'
+              )
+            }
+            component={errorHandler(LazyLoad)}
+          >
+            <IndexRoute
+              componentPromise={() =>
+                import(
+                  /* webpackChunkName: "ExperienceLanding" */ 'app/views/experience/landing'
+                )
+              }
+              component={errorHandler(LazyLoad)}
+            />
+          </Route>
           <Route
             path="/organizations/:orgId/performance/summary/"
             componentPromise={() =>

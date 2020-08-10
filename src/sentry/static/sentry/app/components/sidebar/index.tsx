@@ -23,6 +23,7 @@ import {
   IconStats,
   IconSupport,
   IconTelescope,
+  IconUser,
 } from 'app/icons';
 import {extractSelectionParameters} from 'app/components/organizations/globalSelectionHeader/utils';
 import {hideSidebar, showSidebar} from 'app/actionCreators/preferences';
@@ -405,6 +406,25 @@ class Sidebar extends React.Component<Props, State> {
                       label={t('Performance')}
                       to={`/organizations/${organization.slug}/performance/`}
                       id="performance"
+                    />
+                  </Feature>
+                  <Feature
+                    hookName="feature-disabled:performance-sidebar-item"
+                    features={['performance-view']}
+                    organization={organization}
+                  >
+                    <SidebarItem
+                      {...sidebarItemProps}
+                      onClick={(_id, evt) =>
+                        this.navigateWithGlobalSelection(
+                          `/organizations/${organization.slug}/experience/`,
+                          evt
+                        )
+                      }
+                      icon={<IconUser size="md" />}
+                      label={t('User Experience')}
+                      to={`/organizations/${organization.slug}/experience/`}
+                      id="experience"
                     />
                   </Feature>
                   <Feature
